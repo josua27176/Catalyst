@@ -77,10 +77,6 @@ public class CommonMessageCommand<
                     userService.getUUID(userService.getPlayer(name).get()),
                     userService.getUUID((TPlayer) source)
                 );
-                privateMessageService.replyMap().put(
-                    userService.getUUID((TPlayer) source),
-                    userService.getUUID(userService.getPlayer(name).get())
-                );
             }
         }
     }

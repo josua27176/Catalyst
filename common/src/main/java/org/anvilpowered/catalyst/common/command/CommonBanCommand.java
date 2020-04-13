@@ -64,10 +64,8 @@ public class CommonBanCommand<
             return;
         }
         String userName = args[0];
-        if (userService.get(userName).isPresent()) {
-            if (permissionService.hasPermission(
-                (TSubject) userService.get(userName).get(),
-                registry.getOrDefault(CatalystKeys.BAN_EXEMPT))) {
+        userService.getPlayer(userName).ifPresent(p -> {
+            if (permissionService.hasPermission((TSubject) p, registry.getOrDefault(CatalystKeys.BAN_EXEMPT))) {
                 textService.send(pluginMessages.getBanExempt(), source);
                 return;
             }
@@ -77,8 +75,6 @@ public class CommonBanCommand<
                 String reason = String.join(" ", args).replace(userName + " ", " ");
                 memberManager.ban(userName, reason).thenAcceptAsync(m -> textService.send(m, source));
             }
-        } else {
-            textService.send(pluginMessages.offlineOrInvalidPlayer(), source);
-        }
+        });
     }
 }

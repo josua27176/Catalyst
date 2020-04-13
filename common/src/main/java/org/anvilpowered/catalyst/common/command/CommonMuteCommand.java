@@ -65,9 +65,7 @@ public class CommonMuteCommand<
         String userName = args[0];
 
         if (userService.getPlayer(userName).isPresent()) {
-            if (permissionService.hasPermission(
-                (TSubject) userService.get(userName).get(),
-                registry.getOrDefault(CatalystKeys.MUTE_EXEMPT))) {
+            if (permissionService.hasPermission((TSubject) userService.get(userName), registry.getOrDefault(CatalystKeys.MUTE_EXEMPT))) {
                 textService.send(pluginMessages.getMuteExempt(), source);
                 return;
             }
@@ -77,8 +75,6 @@ public class CommonMuteCommand<
                 String reason = String.join(" ", args).replace(userName, "");
                 memberManager.mute(userName, reason).thenAcceptAsync(m -> textService.send(m, source));
             }
-        } else {
-            textService.send(pluginMessages.offlineOrInvalidPlayer(), source);
         }
     }
 }

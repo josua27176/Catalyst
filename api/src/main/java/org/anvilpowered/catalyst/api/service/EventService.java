@@ -19,11 +19,9 @@ package org.anvilpowered.catalyst.api.service;
 
 import java.util.concurrent.TimeUnit;
 
-public interface EventService<TEvent> {
+public interface EventService {
 
-    void fire(TEvent event);
+    <E> void fire(E event);
 
     void schedule(Runnable runnable, TimeUnit timeUnit, int time);
-
-    void run(Runnable runnable);
 }

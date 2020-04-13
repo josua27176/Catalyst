@@ -17,7 +17,6 @@
 
 package org.anvilpowered.catalyst.common.plugin;
 
-import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Key;
 import com.google.inject.Module;
@@ -30,12 +29,8 @@ public class Catalyst<TPlugin> extends BasePlugin<TPlugin> {
 
     public LuckPerms api;
 
-    public Catalyst(Injector rootInjector, Module module) {
-        super(CatalystPluginInfo.name, rootInjector, module);
-    }
-
-    public Catalyst(Injector rootInjector, Module module, Class<?>... earlyServices) {
-        super(CatalystPluginInfo.name, rootInjector, module, earlyServices);
+    public Catalyst(String name, Injector rootInjector, Module module, Class<?>... earlyServices) {
+        super(name, rootInjector, module, earlyServices);
     }
 
     @Override

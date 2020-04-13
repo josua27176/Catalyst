@@ -22,6 +22,8 @@ dependencies {
     implementation project(':common')
 
     compileOnly anvil_api
+    compileOnly anvil_base
+
     compileOnly bungee
     implementation jda
     compileOnly guice

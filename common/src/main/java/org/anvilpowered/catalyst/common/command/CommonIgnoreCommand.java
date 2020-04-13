@@ -64,7 +64,7 @@ public class CommonIgnoreCommand<
         String userName = args[0];
         if (userService.get(userName).isPresent()) {
             if (permissionService.hasPermission(
-                (TSubject) userService.getPlayer(userName).get(),
+                (TSubject) userService.getPlayer(userName),
                 registry.getOrDefault(CatalystKeys.IGNORE_EXEMPT))) {
                 textService.send(pluginMessages.ignoreExempt(), source);
                 return;

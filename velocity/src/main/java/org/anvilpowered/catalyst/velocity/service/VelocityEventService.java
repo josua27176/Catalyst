@@ -24,26 +24,20 @@ import org.anvilpowered.catalyst.api.service.EventService;
 
 import java.util.concurrent.TimeUnit;
 
-public class VelocityEventService implements EventService<Object> {
+public class VelocityEventService implements EventService {
 
     @Inject
     Plugin<?> catalyst;
-
     @Inject
     private ProxyServer proxyServer;
 
     @Override
-    public void fire(Object event) {
+    public <E> void fire(E event) {
         proxyServer.getEventManager().fire(event).join();
     }
 
     @Override
     public void schedule(Runnable runnable, TimeUnit timeUnit, int time) {
         proxyServer.getScheduler().buildTask(catalyst, runnable).repeat(time, timeUnit).schedule();
-    }
-
-    @Override
-    public void run(Runnable runnable) {
-        proxyServer.getScheduler().buildTask(catalyst, runnable).schedule();
     }
 }

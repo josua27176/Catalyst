@@ -78,10 +78,6 @@ public class CommonReplyCommand<
                     userService.getUserName(recipientUUID).get(),
                     message
                 );
-                privateMessageService.replyMap().put(
-                    userService.getUUID(userService.getPlayer(recipientUUID).get()),
-                    userService.getUUID((TPlayer) source)
-                );
             } else {
                 textService.send(pluginMessages.offlineOrInvalidPlayer(), source);
             }

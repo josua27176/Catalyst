@@ -36,7 +36,7 @@ public class CommonPrivateMessageService<TPlayer extends TCommandSource, TString
 
     private Set<UUID> socialSpySet = new HashSet<>();
     private Map<UUID, UUID> replyMap = new HashMap<>();
-    private String source;
+    private String sender;
     private String recipient;
     private String rawMessage;
 
@@ -57,13 +57,13 @@ public class CommonPrivateMessageService<TPlayer extends TCommandSource, TString
     }
 
     @Override
-    public void setSource(String sourceUserName) {
-        this.source = sourceUserName;
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 
     @Override
-    public String getSource() {
-        return source;
+    public String getSender() {
+        return sender;
     }
 
     @Override

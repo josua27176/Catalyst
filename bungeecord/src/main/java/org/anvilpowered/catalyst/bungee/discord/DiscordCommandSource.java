@@ -48,8 +48,8 @@ public class DiscordCommandSource implements CommandSender {
     @Override
     public void sendMessage(String message) {
         Objects.requireNonNull(
-            Objects.requireNonNull(jdaService.getJDA()
-                .getTextChannelById(registry.getOrDefault(CatalystKeys.MAIN_CHANNEL)))
+            jdaService.getJDA()
+                .getTextChannelById(registry.getOrDefault(CatalystKeys.MAIN_CHANNEL))
                 .sendMessage(message)
         ).queue();
     }
